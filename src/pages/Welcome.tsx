@@ -16,7 +16,7 @@ export default function Welcome(): JSX.Element {
         <div className={`w-screen h-auto md:h-screen ${isDarkMode == "dark" ? "bg-gray-600" : "bg-white"} flex items-center justify-center transition-75`}>
             <div className="w-[clamp(300px,90vw,1200px)]">
                 <NavBar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}></NavBar>
-                <div className="flex-grow mt-32 mb-16 w-full h-full">
+                <div className="flex-grow pt-32 mb-16 w-full h-full">
                     <Outlet context={{ isDarkMode, setIsDarkMode }} />
                 </div>
 

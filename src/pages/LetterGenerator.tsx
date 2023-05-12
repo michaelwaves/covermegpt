@@ -1,16 +1,36 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { useAuth } from "../components/Firebase"
+import { getUserData } from "../components/Firebase"
+import { useNavigate } from "react-router-dom"
 
 import JobForm from "../components/JobForm"
 import { myExperiences } from "../components/MyExperiences"
 import { useIsDarkMode } from "./Welcome"
+import { DocumentData } from "firebase/firestore"
 
 export default function LetterGenerator() {
     const { isDarkMode } = useIsDarkMode()
+    const { user } = useAuth("/signin")
+    const [userData, setUserData] = useState<DocumentData|null>()
+    useEffect(()=>{
+        if(user){
+            const data = getUserData(user.uid)
+            setUserData(data)
+        }else{
+            setUserData(null)
+        }
+       
+    },[user])
+
+    const navigate = useNavigate()
+    if (user == null) {
+        navigate("/")
+    }
     return (
         <div className={isDarkMode + " w-full"}>
             <div className="w-full">
-                <JobForm firstName="Michael" lastName="Yu" phoneNumber="3653668643"
-                    email="nicetomeet.yu@mail.utoronto.ca" experience={myExperiences} />
+                <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
+                    email={userData?.email} experience={userData?.experience} />
             </div>
         </div>
     )

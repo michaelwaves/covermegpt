@@ -32,8 +32,13 @@ export const storage = getStorage()
 const userCollecionRef = collection(db, "users")
 
 export const getUserData = async (uid: string) => {
-    const data = (await getDoc(doc(userCollecionRef, uid))).data()
-    return data
+    try{
+        const data = (await getDoc(doc(userCollecionRef, uid))).data()
+        return data
+    }catch(e){
+        console.error(e)
+    }
+    return null
 }
 
 export const updateUserData = async (uid: string, field: string, newData: string) => {
