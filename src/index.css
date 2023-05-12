@@ -19,6 +19,9 @@
 .handle{
   @apply w-[30px] h-[30px] rounded-full bg-secondary mx-2
 }
+.text-area{
+  @apply dark:text-gray-900 dark:bg-primary dark:placeholder-white mx-2 h-[clamp(200px,20vh,800px)]
+}
 }
 
 :root {

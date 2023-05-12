@@ -1,18 +1,38 @@
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import GoogleButton from 'react-google-button'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import SignInForm from '../components/SignInForm';
 import SignUpForm from '../components/SignUpForm';
 
 import { useIsDarkMode } from './Welcome';
+import { auth, useAuth } from '../components/Firebase';
+import { useNavigate } from 'react-router-dom';
 
 export default function SigninPage() {
     const [isSignIn, setIsSignIn] = useState(true);
     const { isDarkMode } = useIsDarkMode()
+    const { user } = useAuth("/signin")
+
+    const navigate = useNavigate()
+    if (user !== null) {
+        navigate("/generate")
+    }
 
     const toggleSignIn = () => {
         setIsSignIn(!isSignIn);
+    };
+
+    const handleSignInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+            // Handle successful sign-in
+        } catch (error) {
+            // Handle sign-in error
+            console.error('Error signing in with Google:', error);
+        }
     };
     return (
         <div className={isDarkMode}>
@@ -54,7 +74,7 @@ export default function SigninPage() {
                 <div className='flex flex-col items-center'>
                     <h3 className='dark:text-white'>Or</h3>
                     <GoogleButton
-                        onClick={() => { console.log('Google button clicked') }}
+                        onClick={() => handleSignInWithGoogle()}
                     />
                 </div>
             </div>

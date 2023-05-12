@@ -3,6 +3,7 @@ import { useState } from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "./Firebase";
+import ResumeUpload from "./ResumeUpload";
 
 export default function SignUpForm() {
 
@@ -41,6 +42,7 @@ export default function SignUpForm() {
             scaleY: 0.8,
 
         }}>
+            <ResumeUpload />
             <div className="flex flex-row space-x-2 w-full">
                 <motion.div className="w-1/2" animate={{
                     y: 0,

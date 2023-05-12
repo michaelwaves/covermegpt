@@ -1,5 +1,4 @@
-import { useEffect, useReducer } from "react"
-import { useIsDarkMode } from "../pages/Welcome"
+import { useReducer } from "react"
 
 import { jobForm, action } from "../interfaces/JobFormInterfaces"
 import { Profile } from "../interfaces/ProfileInterface"
@@ -35,19 +34,24 @@ export default function JobForm({ firstName, lastName, email, phoneNumber, exper
         console.log(jobState)
     }
     return (
-        <div className="">
-            <div className="flex flex-col space-y-2 p-2 input-box bg-secondary-light transition-75">
-                <div className="flex flex-row space-x-2 p-2">
-                    <input type="text" value={jobState.jobTitle} name="jobTitle" placeholder="Position"
-                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 w-1/2" />
-                    <input type="text" value={jobState.jobCompany} name="jobCompany" placeholder="Company"
-                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 w-1/2" />
+        <>
+            <div className="flex flex-col md:flex-row w-full h-full">
+                <div className="flex flex-col space-y-2 p-2 input-box bg-secondary-light dark:bg-gray-900 transition-75 w-full md:w-1/2">
+                    <div className="flex flex-row space-x-2 p-2">
+                        <input type="text" value={jobState.jobTitle} name="jobTitle" placeholder="Position"
+                            onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-1/2" />
+                        <input type="text" value={jobState.jobCompany} name="jobCompany" placeholder="Company"
+                            onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-1/2" />
+                    </div>
+                    <textarea value={jobState.jobDescription} name="jobDescription" placeholder="Job Requirements"
+                        onChange={(e) => handleChange(e)} className="input-box text-area" />
                 </div>
-                <textarea value={jobState.jobDescription} name="jobDescription" placeholder="Job Requirements"
-                    onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 mx-2 h-[clamp(200px,50vh,800px)]" />
+                <OpenAI jobCompany={jobState.jobCompany} jobTitle={jobState.jobTitle} jobDescription={jobState.jobCompany}
+                    firstName={firstName} lastName={lastName} experience={experience} />
+
             </div>
-            <OpenAI jobCompany={jobState.jobCompany} jobTitle={jobState.jobTitle} jobDescription={jobState.jobCompany}
-                firstName={firstName} lastName={lastName} experience={experience} />
-        </div>
+
+
+        </>
     )
 }

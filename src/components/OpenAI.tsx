@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ChatCompletionResponseMessage, Configuration, OpenAIApi } from "openai";
 
+import DownloadPDF from "./DownloadPDF";
+
 const configuration = new Configuration({
     apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
 });
@@ -49,11 +51,13 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
     }
 
     return (
-        <div>
-            <button onClick={getCoverLetter}>Create Cover Letter!</button>
-            <input type="text" value={coverLetter} onChange={(e) => handleChange(e)}
-                className="input-box"
-                placeholder="Cover Letter" />
+        <div className="flex flex-col space-y-2 mt-2 md:w-1/2 w-full dark:text-white">
+            <button onClick={getCoverLetter} className="self-center justify-center dark:bg-gray-900 bg-secondary-light">Create Cover Letter!</button>
+            <textarea value={coverLetter} onChange={(e) => handleChange(e)}
+                className="input-box text-area"
+                placeholder="Your Custom Cover Letter!" />
+
+            <DownloadPDF jobTitle={jobTitle} firstName={firstName} lastName={lastName} content={coverLetter ?? "Cover Letter Not Found"} />
         </div>
     )
 }
