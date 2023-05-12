@@ -1,6 +1,7 @@
 import { useState } from "react"
+import DarkModeButton from "./DarkModeButton";
 
-const NavBar = ({ isDarkMode }: { isDarkMode: string }) => {
+const NavBar = ({ isDarkMode, setIsDarkMode }: { isDarkMode: string, setIsDarkMode: Function }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleMenuToggle = () => {
@@ -9,7 +10,7 @@ const NavBar = ({ isDarkMode }: { isDarkMode: string }) => {
 
     return (
         <div className={isDarkMode}>
-            <nav className=" bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 dark">
+            <nav className="transition-75 bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 dark">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="https://flowbite.com/" className="flex items-center">
                         <img
@@ -21,6 +22,7 @@ const NavBar = ({ isDarkMode }: { isDarkMode: string }) => {
                             CoverMeGPT
                         </span>
                     </a>
+                    <DarkModeButton isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
                     <div className="flex md:order-2">
                         <button
                             type="button"

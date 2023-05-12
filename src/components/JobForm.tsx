@@ -36,12 +36,12 @@ export default function JobForm({ firstName, lastName, email, phoneNumber, exper
     }
     return (
         <div className="">
-            <div className="flex flex-col space-y-2 p-2 input-box bg-secondary-light">
+            <div className="flex flex-col space-y-2 p-2 input-box bg-secondary-light transition-75">
                 <div className="flex flex-row space-x-2 p-2">
                     <input type="text" value={jobState.jobTitle} name="jobTitle" placeholder="Position"
-                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 " />
+                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 w-1/2" />
                     <input type="text" value={jobState.jobCompany} name="jobCompany" placeholder="Company"
-                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 " />
+                        onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 w-1/2" />
                 </div>
                 <textarea value={jobState.jobDescription} name="jobDescription" placeholder="Job Requirements"
                     onChange={(e) => handleChange(e)} className="input-box dark:text-gray-900 mx-2 h-[clamp(200px,50vh,800px)]" />
