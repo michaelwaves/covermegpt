@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChatCompletionResponseMessage, Configuration, OpenAIApi } from "openai";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import DownloadPDF from "./DownloadPDF";
 
@@ -25,7 +26,9 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
     `
     const [apiResponse, setApiResponse] = useState<ChatCompletionResponseMessage | undefined>()
     const [coverLetter, setCoverLetter] = useState<string | undefined>()
+    const [loading, setLoading] = useState(false);
     const getCoverLetter = async () => {
+        setLoading(true)
         try {
             const completion = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
@@ -40,6 +43,7 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
             }
             console.log(message);
             setApiResponse(message)
+            setLoading(false)
         } catch (e) {
             console.error("Error: ", e)
         }
@@ -50,6 +54,7 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
         setCoverLetter(e.target.value)
     }
 
+
     return (
         <div className="flex flex-col space-y-2 mt-2 md:w-1/2 w-full dark:text-white">
             <button onClick={getCoverLetter} className="self-center justify-center dark:bg-gray-900 bg-secondary-light">Create Cover Letter!</button>
@@ -58,6 +63,7 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
                 placeholder="Your Custom Cover Letter!" />
 
             <DownloadPDF jobTitle={jobTitle} firstName={firstName} lastName={lastName} content={coverLetter ?? "Cover Letter Not Found"} />
+            <ClipLoader loading={loading} size={150} aria-label="Loading Spinner" data-testid="loader" />
         </div>
     )
 }
