@@ -11,16 +11,20 @@ import { DocumentData } from "firebase/firestore"
 export default function LetterGenerator() {
     const { isDarkMode } = useIsDarkMode()
     const { user } = useAuth("/signin")
-    const [userData, setUserData] = useState<DocumentData|null>()
-    useEffect(()=>{
-        if(user){
-            const data = getUserData(user.uid)
-            setUserData(data)
-        }else{
-            setUserData(null)
+    const [userData, setUserData] = useState<DocumentData | null>()
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (user) {
+                const data = await getUserData(user.uid)
+                setUserData(data)
+                console.log(data)
+            } else {
+                setUserData(null)
+            }
         }
-       
-    },[user])
+        fetchUserData()
+
+    }, [user])
 
     const navigate = useNavigate()
     if (user == null) {
@@ -29,8 +33,9 @@ export default function LetterGenerator() {
     return (
         <div className={isDarkMode + " w-full"}>
             <div className="w-full">
-                <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
-                    email={userData?.email} experience={userData?.experience} />
+                {userData &&
+                    <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
+                        email={userData?.email} experience={userData?.experience} />}
             </div>
         </div>
     )

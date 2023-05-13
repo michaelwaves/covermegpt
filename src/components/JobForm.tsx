@@ -31,7 +31,7 @@ export default function JobForm({ firstName, lastName, email, phoneNumber, exper
                 value: e.target.value,
             }
         })
-        console.log(jobState)
+        //console.log(firstName, lastName, experience)
     }
     return (
         <>

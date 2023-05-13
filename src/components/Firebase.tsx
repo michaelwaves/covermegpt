@@ -32,10 +32,10 @@ export const storage = getStorage()
 const userCollecionRef = collection(db, "users")
 
 export const getUserData = async (uid: string) => {
-    try{
+    try {
         const data = (await getDoc(doc(userCollecionRef, uid))).data()
         return data
-    }catch(e){
+    } catch (e) {
         console.error(e)
     }
     return null
@@ -75,7 +75,7 @@ export const useAuth = (redirectPath = '/signin') => {
 
             if (userDoc.exists()) {
                 const userData = userDoc.data();
-                console.log(userData)
+                //console.log(userData)
                 // Do something with the user data, such as setting it in state
                 // Example: setUser((prevUser) => ({ ...prevUser, ...userData }));
             }
