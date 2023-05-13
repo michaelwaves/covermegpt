@@ -10,7 +10,7 @@ import { DocumentData } from "firebase/firestore"
 
 export default function LetterGenerator() {
     const { isDarkMode } = useIsDarkMode()
-    const { user } = useAuth("/signin")
+    const { user } = useAuth()
     const [userData, setUserData] = useState<DocumentData | null>()
     useEffect(() => {
         const fetchUserData = async () => {
@@ -27,6 +27,8 @@ export default function LetterGenerator() {
     }, [user])
 
     const navigate = useNavigate()
+
+
     if (user == null) {
         navigate("/")
     }

@@ -56,6 +56,10 @@ export default function EditProfile() {
         }
     }
     const [state, dispatch] = useReducer(profileReducer, initialState)
+    const [updateSuccess, setUpdateSuccess] = useState(false)
+    const check = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch({
@@ -64,23 +68,41 @@ export default function EditProfile() {
                 value: e.target.value
             }
         })
+        if (updateSuccess) {
+            setUpdateSuccess(false)
+        }
     }
 
+
+
     const handleUpdateProfile = async () => {
-        await setDoc(doc(collection(db, "users"), user?.uid), state)
+        try {
+            await setDoc(doc(collection(db, "users"), user?.uid), state)
+            setUpdateSuccess(true)
+        } catch (e) {
+            console.error(e)
+        }
+
     }
 
     return (
-        <div className='flex flex-col space-y-2 items-center'>
-            <input type="text" required className="input-box w-full" placeholder="First Name" value={state.firstName} onChange={(e) => handleChange(e)} name="firstName" />
-            <input type="text" required className="input-box w-full" placeholder="First Name" value={state.lastName} onChange={(e) => handleChange(e)} name="lastName" />
-            <input type="email" required className="input-box w-full" placeholder="Email" value={state.email} onChange={(e) => handleChange(e)} name="email" />
-            <input type="phone" required className="input-box w-full" placeholder="Phone Number" value={state.phoneNumber} onChange={(e) => handleChange(e)} name="phoneNumber" />
-            <textarea required className="input-box w-full" placeholder="Enter experiences and education! (Resume)" value={state.experience} onChange={(e) => handleChange(e)} name="experience" />
+        <div className='flex flex-col space-y-2 items-center w-[clamp(400px,50vw,800px)] m-auto p-2 border-[1px] bg-secondary-light dark:bg-gray-900 border-gray-400 rounded-xl'>
+            <input type="text" required className="input-box w-full dark-text" placeholder="First Name" value={state.firstName} onChange={(e) => handleChange(e)} name="firstName" />
+            <input type="text" required className="input-box w-full dark-text" placeholder="Last Name" value={state.lastName} onChange={(e) => handleChange(e)} name="lastName" />
+            <input type="email" required className="input-box w-full dark-text" placeholder="Email" value={state.email} onChange={(e) => handleChange(e)} name="email" />
+            <input type="phone" required className="input-box w-full dark-text" placeholder="Phone Number" value={state.phoneNumber} onChange={(e) => handleChange(e)} name="phoneNumber" />
+            <textarea required className="input-box w-full h-40 dark-text" placeholder="Enter experiences and education! (Resume)" value={state.experience} onChange={(e) => handleChange(e)} name="experience" />
 
             <button className="bg-white dark:bg-primary dark:text-white"
                 onClick={() => handleUpdateProfile()}
-            >Submit Profile</button>
+            >Update Profile</button>
+            {updateSuccess &&
+                <div className="flex flex-row space-x-2 justify-center items-center dark:text-white">
+                    {check}
+                    <h2>Update success!</h2>
+
+                </div>
+            }
         </div>
     )
 }

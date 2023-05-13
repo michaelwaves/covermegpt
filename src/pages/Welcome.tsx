@@ -1,4 +1,5 @@
 import NavBar from "../components/Navbar"
+import Background from "../components/Background"
 
 import { useState } from "react"
 import { Outlet, useOutletContext } from "react-router-dom"
@@ -13,15 +14,18 @@ export default function Welcome(): JSX.Element {
 
 
     return (
-        <div className={`w-screen h-auto md:h-screen ${isDarkMode == "dark" ? "bg-gray-600" : "bg-white"} flex items-center justify-center transition-75`}>
-            <div className="w-[clamp(300px,90vw,1200px)]">
-                <NavBar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}></NavBar>
-                <div className="flex-grow pt-32 mb-16 w-full h-full">
-                    <Outlet context={{ isDarkMode, setIsDarkMode }} />
-                </div>
+        <>
+            <Background isDarkMode={isDarkMode} />
+            <div className={`w-screen h-auto ${isDarkMode == "dark" ? "bg-gray-600" : "bg-white"} flex items-center justify-center transition-75`}>
+                <div className="w-[clamp(300px,90vw,1200px)]">
+                    <NavBar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}></NavBar>
+                    <div className="flex-grow pt-32 mb-16 w-full h-full">
+                        <Outlet context={{ isDarkMode, setIsDarkMode }} />
+                    </div>
 
-            </div >
-        </div>
+                </div >
+            </div>
+        </>
     )
 }
 

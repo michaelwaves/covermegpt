@@ -26,9 +26,7 @@ const ExperienceReducer = (state: experienceForm, action: action) => {
 }
 
 export default function ExperienceForm() {
-    useEffect(() => {
-        const data = getUserData()
-    })
+
     const [profileState, dispatch] = useReducer(ExperienceReducer, initialExperience)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch({

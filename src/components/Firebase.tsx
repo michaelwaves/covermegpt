@@ -49,8 +49,8 @@ export const updateUserData = async (uid: string, field: string, newData: string
     })
 }
 
-export const useAuth = (redirectPath = '/signin') => {
-    const navigate = useNavigate();
+export const useAuth = () => {
+    //const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
@@ -61,12 +61,12 @@ export const useAuth = (redirectPath = '/signin') => {
                 fetchUserData(user.uid);
             } else {
                 setUser(null);
-                navigate(redirectPath);
+                //navigate(redirectPath);
             }
         });
 
         return () => unsubscribe();
-    }, [navigate, redirectPath]);
+    }, []);
 
     const fetchUserData = async (userId: string) => {
         try {
@@ -84,7 +84,7 @@ export const useAuth = (redirectPath = '/signin') => {
         }
     };
 
-    return { user, navigate };
+    return { user };
 };
 
 

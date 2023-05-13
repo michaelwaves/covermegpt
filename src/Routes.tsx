@@ -4,6 +4,8 @@ import LandingPage from "./pages/LandingPage"
 import ProfilePage from "./pages/ProfilePage"
 import SigninPage from "./pages/SigninPage"
 import LetterGenerator from "./pages/LetterGenerator"
+import SetupProfile from "./components/SetupProfile"
+import GuestLetterGenerator from "./pages/GuestLetterGenerator"
 
 const router = createBrowserRouter([
     {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
             {
                 path: "/generate",
                 element: <LetterGenerator />
+            },
+            {
+                path: "/setup_profile",
+                element: <SetupProfile />
+            },
+            {
+                path: "/guest_generate",
+                element: <GuestLetterGenerator />
             }
         ]
     }

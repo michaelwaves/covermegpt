@@ -1,15 +1,24 @@
 import { auth } from "./Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react'
+import { useAuth } from "./Firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
+    const navigate = useNavigate()
+
+    const { user } = useAuth()
+    if (user != null) {
+        navigate("/generate")
+    }
+
     const handleSignIn = async (email: string, password: string) => {
         console.log(email, password)
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
             console.error(error);
 
