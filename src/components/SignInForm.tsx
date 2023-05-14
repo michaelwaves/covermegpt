@@ -1,8 +1,6 @@
 import { auth } from "./Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from 'react'
-import { useAuth } from "./Firebase";
-import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
     const [email, setEmail] = useState<string>("")
