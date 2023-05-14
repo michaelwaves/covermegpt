@@ -8,13 +8,6 @@ export default function SignInForm() {
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
 
-    const navigate = useNavigate()
-
-    const { user } = useAuth()
-    if (user != null) {
-        navigate("/generate")
-    }
-
     const handleSignIn = async (email: string, password: string) => {
         console.log(email, password)
         try {
