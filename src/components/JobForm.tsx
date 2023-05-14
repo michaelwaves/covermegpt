@@ -22,6 +22,7 @@ const initialState = {
 }
 
 export default function JobForm({ firstName, lastName, email, phoneNumber, experience }: Profile) {
+    console.log(email, phoneNumber)
     const [jobState, dispatch] = useReducer(JobReducer, initialState)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch({

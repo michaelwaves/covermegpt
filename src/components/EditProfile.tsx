@@ -8,7 +8,7 @@ import { setDoc } from "firebase/firestore"
 
 export default function EditProfile() {
     const { user } = useAuth()
-    const [userData, setUserData] = useState<DocumentData | null>()
+    const [_, setUserData] = useState<DocumentData | null>()
     useEffect(() => {
         const fetchData = async () => {
             if (user) {

@@ -8,7 +8,7 @@ import { useAuth } from "../components/Firebase";
 export default function ProfilePage() {
     const { isDarkMode } = useIsDarkMode()
     const { user } = useAuth()
-    const [userData, setUserData] = useState<DocumentData | null>()
+    const [_, setUserData] = useState<DocumentData | null>()
     useEffect(() => {
         const fetchUserData = async () => {
             if (user) {

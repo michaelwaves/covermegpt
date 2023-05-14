@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import DarkModeButton from "./DarkModeButton";
 import SignOutButton from "./SignOutButton";
 import SignInButton from "./SignInButton";
@@ -7,7 +7,7 @@ import { useAuth } from "./Firebase";
 
 const NavBar = ({ isDarkMode, setIsDarkMode }: { isDarkMode: string, setIsDarkMode: Function }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user } = useAuth('/signin');
+    const { user } = useAuth();
     const handleMenuToggle = () => {
         setIsMenuOpen(!isMenuOpen);
     };

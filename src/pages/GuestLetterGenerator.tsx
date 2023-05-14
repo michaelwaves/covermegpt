@@ -1,6 +1,5 @@
-import { useReducer, useState } from "react"
+import { useReducer } from "react"
 import { useAuth } from "../components/Firebase"
-import { getUserData } from "../components/Firebase"
 import { useNavigate } from "react-router-dom"
 
 
@@ -8,7 +7,6 @@ import JobForm from "../components/JobForm"
 import { action } from "../interfaces/JobFormInterfaces"
 import { userSchema } from "../interfaces/UserSchema"
 import { useIsDarkMode } from "./Welcome"
-import { DocumentData } from "firebase/firestore"
 
 
 const initialState = {

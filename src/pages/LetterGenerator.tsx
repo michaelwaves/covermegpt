@@ -4,7 +4,6 @@ import { getUserData } from "../components/Firebase"
 import { useNavigate } from "react-router-dom"
 
 import JobForm from "../components/JobForm"
-import { myExperiences } from "../components/MyExperiences"
 import { useIsDarkMode } from "./Welcome"
 import { DocumentData } from "firebase/firestore"
 
@@ -28,10 +27,10 @@ export default function LetterGenerator() {
 
     const navigate = useNavigate()
 
-
     if (user == null) {
         navigate("/")
     }
+
     return (
         <div className={isDarkMode + " w-full"}>
             <div className="w-full">

@@ -24,7 +24,7 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
     My experiences are the following: ${experience}.
     My name is ${firstName} ${lastName}.
     `
-    const [apiResponse, setApiResponse] = useState<ChatCompletionResponseMessage | undefined>()
+    const [_, setApiResponse] = useState<ChatCompletionResponseMessage | undefined>()
     const [coverLetter, setCoverLetter] = useState<string | undefined>()
     const [loading, setLoading] = useState(false);
     const getCoverLetter = async () => {

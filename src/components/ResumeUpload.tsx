@@ -3,7 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "./Firebase";
 
 export default function ResumeUpload() {
-    const [file, setFile] = useState<File>();
+    const [_, setFile] = useState<File>();
     const [resumeLink, setResumeLink] = useState<string>("")
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +18,7 @@ export default function ResumeUpload() {
                 const link = await getDownloadURL(storageRef)
                 console.log(link)
                 setResumeLink(link)
+                console.log(resumeLink)
             })
         } catch (e) {
             console.error(e)

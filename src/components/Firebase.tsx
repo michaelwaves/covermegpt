@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { collection, getFirestore, getDoc, setDoc, addDoc, doc } from "firebase/firestore";
-import { getStorage, ref } from "firebase/storage"
+import { collection, getFirestore, getDoc, setDoc, doc } from "firebase/firestore";
+import { getStorage, } from "firebase/storage"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react"
@@ -23,7 +22,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app)
 export const storage = getStorage()
@@ -47,6 +46,7 @@ export const updateUserData = async (uid: string, field: string, newData: string
         ...previousData,
         [field]: newData
     })
+    return data
 }
 
 export const useAuth = () => {
@@ -74,7 +74,7 @@ export const useAuth = () => {
             const userDoc = await getDoc(userRef);
 
             if (userDoc.exists()) {
-                const userData = userDoc.data();
+                //const userData = userDoc.data();
                 //console.log(userData)
                 // Do something with the user data, such as setting it in state
                 // Example: setUser((prevUser) => ({ ...prevUser, ...userData }));

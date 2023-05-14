@@ -1,8 +1,8 @@
-import { useEffect, useReducer } from "react"
+import { useReducer } from "react"
 import { experienceForm } from "../interfaces/ExperienceFormInterface"
 import { action } from "../interfaces/JobFormInterfaces"
 
-import { getUserData } from "./Firebase"
+
 
 const initialExperience = {
     firstName: "",
