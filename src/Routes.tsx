@@ -6,6 +6,7 @@ import SigninPage from "./pages/SigninPage"
 import LetterGenerator from "./pages/LetterGenerator"
 import SetupProfile from "./components/SetupProfile"
 import GuestLetterGenerator from "./pages/GuestLetterGenerator"
+import ContactPage from "./pages/ContactPage"
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: "/guest_generate",
                 element: <GuestLetterGenerator />
+            },
+            {
+                path: "/contact",
+                element: <ContactPage />
             }
         ]
     }

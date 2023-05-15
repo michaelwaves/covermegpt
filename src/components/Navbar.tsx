@@ -78,12 +78,12 @@ const NavBar = ({ isDarkMode, setIsDarkMode }: { isDarkMode: string, setIsDarkMo
                                 </Link>
                             </li>
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    to="/contact"
                                     className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-primary  md:hover:text-primary-light md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                 >
                                     Contact
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
