@@ -12,9 +12,9 @@ export default function LandingPage() {
             </div>
             {user ? <Link className="Link dark:text-white mt-2" to="/generate">Generate Cover Letter!</Link> :
 
-                <div className="flex flex-col space-y-2 mt-2 w-[clamp(400px,50vw,800px)] m-auto">
-                    <Link className="Link dark:text-white w-auto text-gray-900" to="/signin">SignUp/SignIn!</Link>
-                    <Link className="Link dark:text-white w-auto text-gray-900" to="/guest_generate">Proceed as Guest</Link>
+                <div className="flex flex-col space-y-2 mt-2 m-auto">
+                    <Link className="Link dark:text-white text-gray-900 m-auto" to="/signin">SignUp/SignIn!</Link>
+                    <Link className="Link dark:text-white text-gray-900 m-auto" to="/guest_generate">Proceed as Guest</Link>
                 </div>
             }
         </div>
