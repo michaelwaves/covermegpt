@@ -38,13 +38,20 @@ export default function JobForm({ firstName, lastName, email, phoneNumber, exper
         <>
             <div className="flex flex-col md:flex-row w-full h-full dark:text-white">
                 <div className="flex flex-col space-y-2 p-2 input-box bg-secondary-light dark:bg-gray-900 transition-75 w-full md:w-1/2">
-                    <div className="flex flex-row space-x-2 p-2">
-                        <input type="text" value={jobState.jobTitle} name="jobTitle" placeholder="Position"
-                            onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-1/2" />
-                        <input type="text" value={jobState.jobCompany} name="jobCompany" placeholder="Company"
-                            onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-1/2" />
+                    <div className="flex flex-row space-x-2 justify-between p-2">
+                        <div className="flex flex-col space-y-2 w-1/2">
+                            <label htmlFor="jobTitle" className="font-bold cursor-pointer">Position</label>
+                            <input type="text" value={jobState.jobTitle} name="jobTitle" id="jobTitle" placeholder="Position"
+                                onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-full" />
+                        </div>
+                        <div className="flex flex-col space-y-2 w-1/2">
+                            <label htmlFor="jobCompany" className="font-bold cursor-pointer">Company</label>
+                            <input type="text" value={jobState.jobCompany} name="jobCompany" id="jobCompany" placeholder="Company"
+                                onChange={(e) => handleChange(e)} className="input-box dark:bg-primary dark:placeholder-white w-full" />
+                        </div>
                     </div>
-                    <textarea value={jobState.jobDescription} name="jobDescription" placeholder="Job Requirements"
+                    <label htmlFor="jobDescription" className="font-bold cursor-pointer">Job Description</label>
+                    <textarea value={jobState.jobDescription} name="jobDescription" id="jobDescription" placeholder="Job Requirements"
                         onChange={(e) => handleChange(e)} className="input-box text-area dark:text-white" />
                 </div>
                 <OpenAI jobCompany={jobState.jobCompany} jobTitle={jobState.jobTitle} jobDescription={jobState.jobCompany}
