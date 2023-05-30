@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import JobForm from "../components/JobForm"
 import { useIsDarkMode } from "./Welcome"
 import { DocumentData } from "firebase/firestore"
+import ProfileSelector from "../components/ProfileSelector"
 
 export default function LetterGenerator() {
     const { isDarkMode } = useIsDarkMode()
@@ -30,13 +31,18 @@ export default function LetterGenerator() {
     if (user == null) {
         navigate("/")
     }
-
+    const [profileNum, setProfileNum] = useState(0)
     return (
         <div className={isDarkMode + " w-full"}>
             <div className="w-full">
+
                 {userData &&
-                    <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
-                        email={userData?.email} experience={userData?.experience} />}
+                    <>
+                        <ProfileSelector setProfileNum={setProfileNum} state={userData} />
+                        <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
+                            email={userData?.email} experience={userData?.profiles[profileNum].experience} />
+
+                    </>}
             </div>
         </div>
     )

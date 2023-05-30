@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react"
 import { getUserData } from "../components/Firebase";
 import { DocumentData } from "firebase/firestore";
-import EditProfile from "../components/EditProfile";
+import EditMultiProfile from "../components/EditMultiProfile";
 import { useIsDarkMode } from "./Welcome";
 import { useAuth } from "../components/Firebase";
 export default function ProfilePage() {
@@ -30,7 +30,7 @@ export default function ProfilePage() {
 
     return (
         <div className={isDarkMode}>
-            <EditProfile />
+            <EditMultiProfile />
         </div>
     )
 }

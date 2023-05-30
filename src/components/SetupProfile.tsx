@@ -1,7 +1,7 @@
 import { useReducer, useState, } from "react"
 import { db, useAuth } from "./Firebase"
 import { collection, doc } from "firebase/firestore"
-import { userSchema } from "../interfaces/UserSchema"
+import { userSchema } from "../interfaces/UserSchemaMulti"
 import { setDoc } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
 import { useIsDarkMode } from "../pages/Welcome"
@@ -15,7 +15,10 @@ export default function SetupProfile() {
         lastName: '',
         email: '',
         phoneNumber: "",
-        experience: "",
+        profiles: [{
+            name: "",
+            experience: "",
+        }],
     }
 
     const profileReducer = (state: userSchema, action: any) => {
@@ -23,9 +26,22 @@ export default function SetupProfile() {
             case "SET_INITIAL_DATA":
                 return action.payload
             case "UPDATE_DATA":
-                return {
-                    ...state,
-                    [action.payload.name]: action.payload.value
+                if (action.payload.name == "name" || action.payload.name == "experience") {
+                    const updatedProfiles = state.profiles?.map((profile, index) => {
+                        return {
+                            ...profile,
+                            [action.payload.name]: action.payload.value
+                        }
+                    })
+                    return {
+                        ...state,
+                        profiles: updatedProfiles
+                    }
+                } else {
+                    return {
+                        ...state,
+                        [action.payload.name]: action.payload.value
+                    }
                 }
             default:
                 return state
@@ -70,7 +86,9 @@ export default function SetupProfile() {
                 <input type="text" required className="input-box w-full dark-text" placeholder="Preferred Last Name" value={state.lastName} onChange={(e) => handleChange(e)} name="lastName" />
                 <input type="email" required className="input-box w-full dark-text" placeholder="Email" value={state.email} onChange={(e) => handleChange(e)} name="email" />
                 <input type="phone" className="input-box w-full dark-text" placeholder="Phone Number (optional)" value={state.phoneNumber} onChange={(e) => handleChange(e)} name="phoneNumber" />
-                <textarea required className="input-box w-full h-40 dark-text" placeholder="Enter experiences and education! (Resume)" value={state.experience} onChange={(e) => handleChange(e)} name="experience" />
+
+                <input type="phone" className="input-box w-full dark-text" placeholder="Name this Experience Profile" value={state.profiles[0].name} onChange={(e) => handleChange(e)} name="name" />
+                <textarea required className="input-box w-full h-40 dark-text" placeholder="Enter experiences and education! (Resume)" value={state.profiles[0].experience} onChange={(e) => handleChange(e)} name="experience" />
 
                 <button className="bg-white dark:bg-primary dark:text-white"
                     onClick={() => handleUpdateProfile()}

@@ -29,6 +29,7 @@
     "framer-motion": "^10.12.10",
     "jspdf": "^2.5.1",
     "openai": "^3.2.1",
+    "pdf-lib": "^1.17.1",
     "postcss": "^8.4.23",
     "react-google-button": "^0.7.2",
     "react-spinners": "^0.13.8",
