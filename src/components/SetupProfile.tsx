@@ -27,7 +27,7 @@ export default function SetupProfile() {
                 return action.payload
             case "UPDATE_DATA":
                 if (action.payload.name == "name" || action.payload.name == "experience") {
-                    const updatedProfiles = state.profiles?.map((profile, index) => {
+                    const updatedProfiles = state.profiles?.map((profile, _) => {
                         return {
                             ...profile,
                             [action.payload.name]: action.payload.value
