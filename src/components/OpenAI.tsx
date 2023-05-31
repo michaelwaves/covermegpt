@@ -3,7 +3,6 @@ import { ChatCompletionResponseMessage, Configuration, OpenAIApi } from "openai"
 import ClipLoader from "react-spinners/ClipLoader";
 
 import DownloadPDF from "./DownloadPDF";
-
 const configuration = new Configuration({
     apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
 });
@@ -69,6 +68,7 @@ export default function OpenAI({ jobTitle, jobCompany, jobDescription, experienc
             <div className="self-center justify-center">
                 <ClipLoader loading={loading} size={150} aria-label="Loading Spinner" data-testid="loader" />
             </div>
+
         </div>
     )
 }

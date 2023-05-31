@@ -12,12 +12,14 @@ const DownloadPDF: React.FC<DownloadPDFProps> = ({ content, jobTitle, firstName,
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
     const text = content
-    const margin = 10; // Set the margin value
+    const margin = 25.4; // Set the margin value in mm 
     const maxWidth = doc.internal.pageSize.getWidth() - 2 * margin; // Calculate the maximum width for the text
-    const lineHeight = 8; // Set the line height
+    const lineHeight = 6; // Set the line height
 
     const fontSize = 12
     doc.setFontSize(fontSize)
+
+    doc.setFont("Times")
 
     // Split the text into an array of lines based on the maxWidth and lineHeight
     const lines = doc.splitTextToSize(text, maxWidth);
