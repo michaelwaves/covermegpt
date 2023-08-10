@@ -22,7 +22,6 @@ export default function Welcome(): JSX.Element {
                     <div className="flex-grow pt-32 mb-16 w-full h-full">
                         <Outlet context={{ isDarkMode, setIsDarkMode }} />
                     </div>
-
                 </div >
             </div>
         </>

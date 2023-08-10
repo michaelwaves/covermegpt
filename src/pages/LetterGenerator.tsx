@@ -32,6 +32,7 @@ export default function LetterGenerator() {
         navigate("/")
     }
     const [profileNum, setProfileNum] = useState(0)
+
     return (
         <div className={isDarkMode + " w-full"}>
             <div className="w-full">
@@ -40,7 +41,7 @@ export default function LetterGenerator() {
                     <>
                         <ProfileSelector setProfileNum={setProfileNum} state={userData} />
                         <JobForm firstName={userData?.firstName} lastName={userData?.lastName} phoneNumber={userData?.phoneNumber}
-                            email={userData?.email} experience={userData?.profiles[profileNum].experience} />
+                            email={userData?.email} experience={userData.profiles ? userData?.profiles[profileNum].experience : "This person did not provide experiences so use your best judgement"} />
 
                     </>}
             </div>

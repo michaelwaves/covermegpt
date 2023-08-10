@@ -20,7 +20,7 @@ const DownloadPDFLib: React.FC<DownloadPDFProps> = ({ content, jobTitle, firstNa
     const { width, height } = page.getSize()
 
     const fontSize = 12
-    const textWidth = width - 100; // Adjust the width based on your requirements
+    const textWidth = width - 100;
     const textHeight = height - 50;
     const lines = content.split("\n");
 
@@ -37,15 +37,6 @@ const DownloadPDFLib: React.FC<DownloadPDFProps> = ({ content, jobTitle, firstNa
       });
     });
 
-    /* page.drawText(content, {
-      x: 50,
-      y: height - 4 * fontSize,
-      size: fontSize,
-      font: font,
-      color: rgb(0, 0, 0),
-      maxWidth: textWidth,
-      lineHeight: fontSize * 1.2, // Adjust the line height as needed
-    }) */
     const pdfBytes = await doc.save()
     const fileName = `${jobTitle} Cover Letter-${firstName} ${lastName}.pdf`;
 
